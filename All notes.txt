@@ -24,6 +24,7 @@ AUTO SAVE
 11, print(type( <file>)) - identify file type
 12, for i in range(<number>):
       for i in [<list of number>] - loops
+
 fixed hard code -> code which already know how (the second one only depends on the number of members, if use |print(i)| it will print out exact the given numbers)
 
 sript mode >< interactive mode
@@ -39,16 +40,15 @@ Check TURTLE :0
       begin_fill()
       end_fill()
 
-
 vvvvvvvvvvvvvv
 DAY 2
 
-15,underscore: lowercase all (user_score)
+15, underscore: lowercase all (user_score)
 16, range(a, b, c) -> start = a, stop = b, step = c ( if not given, auto a = 0, c = 1)
 => will stop before b 
 17, print(*<range>) -> will print out all the number respectively
-18, += = add upclr
- 19, sum(range(<number>)) - the sum only works with a list of number 
+18, += = add up
+19, sum(range(<number>)) - the sum only works with a list of number 
 20, if ___ :
 	<do smth>
       elif __:
