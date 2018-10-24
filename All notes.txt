@@ -1,0 +1,60 @@
+pass: incubator of change
+insights.stackoverflow.com surveys
+hiddenpassion
+reae+ JS
+5-6 +2+8 =15-16 lessions -> hackathon
+
+
+Day 1: Introduction + Basic
+
+C:/Users/Dell/Doc
+//////you gotta save before running////
+AUTO SAVE
+
+1, cd <filename> - changedirectory
+2, cd .. - getout
+3, *tab* - auto fill, tab more to change to other
+4, *^ or v* - go to previous or next line or command
+5, mkdir <folder name> - make a new folder
+6, dir - list all existed file
+7, cls - clears crn (but still keep all previous command)
+8, exit() - out of IM
+9, <file>.upper() - all caps
+10, <file>.lower() - all dr1=own
+11, print(type( <file>)) - identify file type
+12, for i in range(<number>):
+      for i in [<list of number>] - loops
+fixed hard code -> code which already know how (the second one only depends on the number of members, if use |print(i)| it will print out exact the given numbers)
+
+sript mode >< interactive mode
+
+SYNTAX = grammar error
+VALUE = unexpected 
+TYPE = different bg
+
+Check TURTLE :0
+
+13, from turtle import *
+14, color("<color>")
+      begin_fill()
+      end_fill()
+
+
+vvvvvvvvvvvvvv
+DAY 2
+
+15,underscore: lowercase all (user_score)
+16, range(a, b, c) -> start = a, stop = b, step = c ( if not given, auto a = 0, c = 1)
+=> will stop before b 
+17, print(*<range>) -> will print out all the number respectively
+18, += = add upclr
+ 19, sum(range(<number>)) - the sum only works with a list of number 
+20, if ___ :
+	<do smth>
+      elif __:
+	<do another>
+      else:
+	<do another smth>
+you know what i shouldnt have opened my mouth at all
+21, from random import randint - random integer
+22, from math import * - take all from math library
