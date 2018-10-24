@@ -35,7 +35,7 @@ TYPE = different bg
 Check TURTLE :0
 
 13, from turtle import *
-14, color("<color>")
+14, color('<line color>, <bucket color>')
       begin_fill()
       end_fill()
 
