@@ -58,3 +58,26 @@ DAY 2
 you know what i shouldnt have opened my mouth at all
 21, from random import randint - random integer
 22, from math import * - take all from math library
+
+vvvvvvvvvvvvvvvv
+DAY 3
+
+*in Interactive mode*
+BOOLEAN
+23, .isdigit() - all number in string
+24, .isupper() / islower() - all uppercase or all lower case in string
+25, .isalpha - all letters in string
+26, if not True == if False
+27, Ctrl + C - interrupt
+ ***you have to Ctrl +C while in the loops to make the changes***.
+
+i crave death so so so much
+28, break - exit loops
+C(reate) R(ead) U(pdate) D(elete)
+29, Ctrl +/ - comment/uncomment multiple blocks of code
+30, <list name>.append(<item>) - add 
+31, <list name> = [<list item1>, ..., <list itemn>]
+32, print(*<...>, sep = ", ") - print all seperated by ,
+33, sep = "\n " - separated by new lines
+34, <list name>.pop(position) - delete
+35, <list name>.remove("<item name>")
