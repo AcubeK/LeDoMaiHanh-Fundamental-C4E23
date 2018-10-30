@@ -81,3 +81,11 @@ C(reate) R(ead) U(pdate) D(elete)
 33, sep = "\n " - separated by new lines
 34, <list name>.pop(position) - delete
 35, <list name>.remove("<item name>")
+36, for (<counter>, <item>) in enumerate([<list>]):
+#ask if i can jump to a specific line in file
+
+37, list(<..>) - list all characters in <..>
+
+vvvvvvvvv
+DAY 4
+_i didnt save, did i ._. _
