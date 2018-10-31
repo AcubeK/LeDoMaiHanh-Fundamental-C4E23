@@ -89,3 +89,5 @@ C(reate) R(ead) U(pdate) D(elete)
 vvvvvvvvv
 DAY 4
 _i didnt save, did i ._. _
+
+42, <list>.index(<item>) - the index of needed item in list
