@@ -91,3 +91,33 @@ DAY 4
 _i didnt save, did i ._. _
 
 42, <list>.index(<item>) - the index of needed item in list
+
+
+vvvvvvvvvvv
+DAY 5 - LAB 1
+
+43, <string>.replace("somrthing", "with something")
+
+HTML - Hypertext Markup Language
+->style, context, chia vung
+
+SMTP 
+pip install gmail
+package manager
+
+44, gmail = GMail("<mail>" , "<password>")
+
+45, msg = Message("Title", to = "<mail>", text= "<Text>")
+46, gmail.send(msg)
+
+>>> msg = Message('Test Message',to='xyz@xyz.com',text="Hello",html="<b>Hello</b>",attachments=['img.jpg'])
+
+47, choice(<insert>) - select randomly from one's
+
+SQL & No SQL
+
+select * from user where name = 'Q'
+
+Host - Port - DB name
+Lazy loading
+Robot 3T
