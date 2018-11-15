@@ -1,0 +1,43 @@
+1, Why should we use function?
+    - To shorten the programming time 
+    - Due to the complexity of the definitions and repetitive coding
+
+2, How to define a function?
+    - For future uses, contain the function in a separate file
+    - Use def to declare the function and type a function name, add variables if needed,
+    end the line with a colon
+    - Add commands that the function should execute
+    - Return the variables if needed
+3, How to call, use a function?
+    - To call and use a function, simply use 
+        from #file contained the function# import #function#
+        #function(variables)#
+
+4, What is return? How and why we use it?
+    - When a function ends, all of variables created within the function will also ceased
+    to exist , or in another word, return to None
+    - return statement will be used then to bring the variables out of the function 
+    as outputs to process in later coding
+    - To use: 
+        def ...:
+            ...
+            return #any variables able in the function#
+
+    Then you need to create a container for the outputs.
+
+5, Do we have to use return in every functions?
+    - No. As previously stated, we only use return if we need the outputs.
+
+6, What are function arguments/parameters? How and why we use it?
+    - Parameters are the names used when defining a function or a method, and into which 
+    arguments will be mapped. 
+    - In short, arguments are the variables used in the name of the functions and parameters 
+    are the variables used in the body of function
+    
+    As in a function(1), you can also call another function(2) within it, so then the arguement
+    of function(2) will become a parameter
+    - You should use it to ease the process and your life
+    - Really, why, they're in the definition of function
+
+7, How to use function from a different file other than our currently working file?
+    - Refered in Q3
