@@ -40,10 +40,13 @@ def generate_quiz():
     selected_text = choice(text_list)           #select one random things from lists
     selected_color = choice(color_list) 
     quiz_type = choice([0, 1])
-    
+    if quiz_type == 1:
+        selected_text = selected_text + "(1)"
+    else:
+        selected_text = selected_text + "(0)"
     return [selected_text,
             selected_color,                     #outputs
-            quiz_type]                 # 0 : meaning, 1: color
+            quiz_type]                          # 0 : meaning, 1: color
 
 def is_inside(l_1, l_2):
     if l_2[0] < l_1[0] < l_2[0] + l_2 [2] and l_2[1] < l_1[1] < l_2[1] + l_2[3]:
@@ -56,21 +59,24 @@ def is_inside(l_1, l_2):
 
 def mouse_press(x, y, text, color, quiz_type):
     l = generate_quiz()                                 #take the outputs   
-
+    print(l)
     for s in shapes:
         if is_inside([x, y], s["rect"]) == True:        #check if user clicked answer
             user = s
-            
-    if l[2] == 0:                                       #if quiz type  is 0
-        if l[0] == user["text"]:                        #if selected text and user's text the same -> correct
-            return True
-        else:
-            return False
-    else:                                               #if quiz type is 1
-        if l[1] == user["color"]:                       #if selected colour and user's colour the same -> correct
-            return True
-        else:
-            return False
+            print(user)
+            print("----------")
+    
+            if l[2] == 0:                                       #if quiz type  is 0
+                if l[0] == user["text"] + "(0)":                        #if selected text and user's text the same -> correct
+                    return True
+                else:
+                    return False
+            else:                                               #if quiz type is 1
+                if l[1] == user["color"] + "(1)":                       #if selected colour and user's colour the same -> correct
+                    return True
+                else:
+                    return False
+        
 
 #adkjfbgqeiygG dsfHA L P-
 
