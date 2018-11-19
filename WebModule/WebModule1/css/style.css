@@ -1,0 +1,36 @@
+/* selector {
+    property: value;
+} */
+h1{
+    color: turquoise;
+}
+h2{
+    color: black;
+}
+
+/* id selector */
+#heading2 {
+    color: blue;
+    font-family: 'Slabo 27px', serif;
+    font-size: 40px;
+}
+
+/* class selector */
+.text-right{ 
+    text-align: right;
+} 
+
+#background-ele {
+    height: 500px;
+    width: 100%;
+    background-color: lightgreen;
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpsHe_xacpWKLpiqcabX-B-3201Sg_2H2e-5CCRfLmnPF4FLal");
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.bg-lightgreen{
+    width:  100%;
+    height : 300px;
+    background-color: lightgreen;
+}
