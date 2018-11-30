@@ -23,6 +23,7 @@ while True:
    elif task[x] == task[2]:
       for i, v in enumerate(t_list):
          print(i+1, v.Name)
+         print(v.Description, v.Completion_status, sep = "\n")
       k = int(input("Which task you want to mark? ")) - 1
       t_list[k].update(set__Completion_status = True)
 
