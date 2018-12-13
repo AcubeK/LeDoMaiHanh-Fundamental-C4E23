@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class = "activities">
+        <h3>Hoat dong: </h3>
+        <h5>((Hay click vo hoat dong ma ban da hoan thanh))</h5>
+
+        {% for a_list in act %}
+            <ul style="list-style: none;">
+                <li>
+                    <form method = "POST">
+                    {% for a in a_list %}
+                        {% if a == "tit"%}
+                        <div >
+                           <button name = "{{ a_list[a] }}" >
+                                {{ a_list[a] }}
+                            </button> 
+                        </div>
+                        {% elif a != "id" and a_list[a] != 0 %}
+                            {{a}}: {{ a_list[a] }};
+                        {% endif %}
+                    {% endfor %}
+                    </form>
+                    
+                </li>
+            </ul>
+        {% endfor %}
+    </div>
+</body>
+</html>

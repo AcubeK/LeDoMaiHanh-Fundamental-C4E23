@@ -2,7 +2,9 @@ from flask import Flask, render_template, request, redirect, session, url_for
 import mlab
 from models.activities import Activities
 from models.information import Information
+from models.attribute import Attribute
 from models.habit import Habit
+from urllib.request import urlopen
 
 mlab.connect()
 
@@ -51,7 +53,7 @@ def sign_in():
         elif found_user.password != password:
             return "Sorry! Wrong password"
         else:
-            # session["token"] = username #token
+            session["token"] = username
             return redirect(url_for("home"))
 
 
@@ -69,10 +71,40 @@ def home():
 def ca_nhan():
     if "token" in session:
         user = session["token"]
-    info = Information.objects(username = user).first()
-    return render_template("ca_nhan.html", info = info)
+        info = Information.objects(username = user).first()
+        att = Attribute.objects(username = user).first()
+        return render_template("ca_nhan.html", info = info, att = att)
+    else:
+        return "Khong phai nguoi dung"
 
+@app.route("/hoat-dong", methods = ["GET","POST"])
+def hoat_dong():
+    if request.method == "GET":
+        act_list = Activities.objects()
+        return render_template("hoat_dong.html", act = act_list)
+    else:
+        if "token" in session:
+            user = session["token"]
+            form = request.form
+            act_list = Activities.objects()
+            att_list = Attribute.objects(username = user).first()
+            for act in act_list:
+                action = form.get(act["tit"])
+                if action != None:
+                    for att in att_list :
+                        if att in act and att != "id":
+                            att_list[att] = att_list[att] + act[att]
+                            if att_list[att] < 0:
+                                att_list[att] = 0 
+                    att_list.save()
+                    break                   
+            return render_template("hoat_dong.html", act = act_list)
+        else:
+            return "Dang nhap de co the su dung."
+# for a in act:
+#     if a["tit"] == action:
+#         print("Ok")
 
-
+    
 if __name__ == '__main__':
   app.run(debug=True)

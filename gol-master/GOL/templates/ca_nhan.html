@@ -7,12 +7,23 @@
     <title>Document</title>
 </head>
 <body>
-    <div> {{ info[username] }}      <br>
-        Thông tin cá nhân:          <br>
-       {% for x in info %}          <br>
-        Ten: {{ x[fullname] }}      <br>
-        Email: {{ x[email] }}       <br>
-        
+    <div class = "info"> 
+        <h3> {{ info["username"] }} </h3>
+        <h4>Thong tin ca nhan:</h4>
+
+        Ten: {{ info["fullname"] }}      <br>
+        Email: {{ info["email"] }}       <br>
+    
+    <div>
+            <h4> Thuoc tinh:</h4>
+
+            The chat (STR): {{ att["st"] }}     <br>
+            Kien thuc (KNL): {{ att["knl"] }}   <br>
+            Sang tao (CRE): {{ att["cre"] }}    <br>
+            Nhan cach (PER): {{ att["per"] }}   <br>
+            Xa hoi (SOC): {{ att["soc"] }}      <br>
+    </div>
+
     </div>
 </body>
 </html>
