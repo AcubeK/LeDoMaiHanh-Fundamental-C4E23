@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <div class = "activities">
+                <form method = "POST">
+                        <button name = "home">Trang chủ</button>
+                        <h3>Hoạt dộng:</h3>
+                        <button name= "st">Thể chất</button>
+                        <button name = "knl">Kiến thức</button>
+                        <button name = "cre">Sáng tạo</button>
+                        <button name = "per">Nhân cách</button>
+                        <button name = "soc">Xã hội</button>
+                        <button name = "all">Hiển thị toàn bộ</button>
+                </form>
+                <h5>((Hãy click vô hoạt dộng mà bạn đã hoàn thành))</h5>
+        
+                {% for a_list in act %}
+                        <ul style="list-style: none;">
+                        <li>
+                                <form method = "POST">
+                                {% for a in a_list %}
+                                {% if a_list[sort] != 0 %}
+                                        {% if a == "tit"%}
+                                        <div >
+                                                <button name = "{{ a_list[a] }}" >
+                                                {{ a_list[a] }}
+                                                </button> 
+                                        </div>
+                                        {% elif a != "id" and a_list[a] != 0 %}
+                                                {{a}}: {{ a_list[a] }};
+                                        {% endif %}
+                                {% endif %}
+                                {% endfor %}
+                                </form>                   
+                        </li>
+                        </ul>
+                {% endfor %}
+        </div>
+</body>
+</html>

@@ -9,21 +9,47 @@
 <body>
     <div class = "info"> 
         <h3> {{ info["username"] }} </h3>
-        <h4>Thong tin ca nhan:</h4>
+        <h4>Thông tin cá nhân:</h4>
 
-        Ten: {{ info["fullname"] }}      <br>
+        Tên: {{ info["fullname"] }}      <br>
         Email: {{ info["email"] }}       <br>
+    </div>
+    <div class = "thuoc_tinh">
+        <h4> Thuộc tính:</h4>
+
+        Thể chất (STR): {{ att["st"] }}     <br>
+        Kiến thức (KNL): {{ att["knl"] }}   <br>
+        Sáng tạo (CRE): {{ att["cre"] }}    <br>
+        Nhân cách (PER): {{ att["per"] }}   <br>
+        Xã hội (SOC): {{ att["soc"] }}      <br>
+    </div>
+<script>
+function showDiv() {document.getElementById('add_q').style.display = "block";}
+</script>
+    <div class = "quote">
+        <h4>Trích dẫn ưa thích:
+                <button onclick= "showDiv()"> + </button>   
+                <div id="add_q" style="display:none;">
+                    <form method = "POST">
+                        <input type="text" name = "quote" placeholder = "Nhập trích dẫn" required> <br>
+                        <input type="text" name = "author" placeholder = "Nhập tác giả">
+                        <button name = "add_quote">Thêm</button>   
+                    </form>  
+                </div>       
+        </h4>
+
+            {% for q in quotes%}
+                " {{ q["quote"] }} "        <br>
+                ({{ q["author"] }})         <br>
+                <br>
+            {% endfor %}
+    </div>
+    <div class = "lich_su">
+        <h4> Lịch sử hoạt động: </h4>
+        {% for hstr in history %}
+            - {{ hstr }} <br>
+        {% endfor %}
+    </div>
     
-    <div>
-            <h4> Thuoc tinh:</h4>
-
-            The chat (STR): {{ att["st"] }}     <br>
-            Kien thuc (KNL): {{ att["knl"] }}   <br>
-            Sang tao (CRE): {{ att["cre"] }}    <br>
-            Nhan cach (PER): {{ att["per"] }}   <br>
-            Xa hoi (SOC): {{ att["soc"] }}      <br>
-    </div>
-
-    </div>
 </body>
 </html>

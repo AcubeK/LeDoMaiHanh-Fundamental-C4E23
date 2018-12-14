@@ -8,8 +8,17 @@
 </head>
 <body>
     <div class = "activities">
-        <h3>Hoat dong: </h3>
-        <h5>((Hay click vo hoat dong ma ban da hoan thanh))</h5>
+        
+        <form method = "POST">
+            <button name = "home">Trang chủ</button>
+                <h3>Hoạt dộng:</h3>
+                        <button name= "st">Thể chất</button>
+                        <button name = "knl">Kiến thức</button>
+                        <button name = "cre">Sáng tạo</button>
+                        <button name = "per">Nhân cách</button>
+                        <button name = "soc">Xã hội</button>
+        </form>
+        <h5>((Hãy click vô hoạt dộng mà bạn đã hoàn thành))</h5>
 
         {% for a_list in act %}
             <ul style="list-style: none;">
@@ -26,8 +35,7 @@
                             {{a}}: {{ a_list[a] }};
                         {% endif %}
                     {% endfor %}
-                    </form>
-                    
+                    </form>                   
                 </li>
             </ul>
         {% endfor %}
