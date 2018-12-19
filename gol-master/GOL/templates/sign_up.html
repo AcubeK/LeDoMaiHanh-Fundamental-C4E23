@@ -9,26 +9,60 @@
     <title>👍 </title>
 </head>
 <body>
+        <div class="title">
+                <span>Game of Life</span>
+                <a href="http://127.0.0.1:5000/logout"><button>Logout</button></a>
+            </div>
+        <div id="menu">
+                <ul>
+                    <li><a href="http://127.0.0.1:5000/">Trang chủ</a></li>
+                    <li><a href="/ca-nhan">Cá nhân</a></li>
+                    <li><a href="/hoat-dong">Hoạt động</a></li>
+                    <li><a href="">Thói quen</a></li>
+                    <li><a href="http://127.0.0.1:5000/social">Cộng đồng</a></li>
+                    <li><a href="/contribute">Góp ý</a></li>
+                </ul>
+            </div>
     <form action="" method="post">
-        <p><b>Create Account</b> <a href="/sign_in"><small>Sign In</small></a></p>
+        <h3><b>Đăng kí</b></h3>
         <div>
-            <input type="text" placeholder="Username" name="username" class="o_input"><br>
-            <small style="font-size: 10px">(Minimum 8 characters)</small>
+            <input type="text" placeholder="Tên" name="fullname" class="o_input">
         </div>
         <div>
-            <input type="text" placeholder="Email" name="email" class="o_input">
+            <input type="text" placeholder="Tên đăng nhập" name="username" class="o_input">
+            <!-- {% if error %}
+            <p><strong>{{ error }}</strong></p>
+            {% endif %} -->
         </div>
         <div>
-            <input type="text" placeholder="Full Name" name="fullname" class="o_input">
+            <input type="email" placeholder="Địa chỉ email" name="email" class="o_input">
         </div>
         <div>
-            <input type="password" placeholder="Password" name="password" class="o_input"><br>
-            <small style="font-size: 10px">(Use 8 or more characters with a mix of letters, numbers & symbols)</small>
+            <input type="password" placeholder="Mật khẩu" name="password" class="o_input">
+            <small style="font-size: 10px">(Sử dụng ít nhất 8 ký tự. Không sử dụng mật khẩu từ trang khác hoặc nội dung quá rõ ràng như tên thú cưng của bạn)</small>
         </div>
         <div>
-            <input type="password" placeholder="Confirm" name="confirm" class="o_input"> 
+            <input type="password" placeholder="Nhập lại mật khẩu" name="confirm" class="o_input"> 
         </div>
-        <button class="button">Create Account</button>
+        Ngày sinh:
+        <input type="date" name="bday">
+        <br>
+        Giới tính:
+        <select name="gender"> 
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+        <br>
+        Điện thoại:
+        <input type="tel" name="telephone">
+        <div>
+            <button class="button">Tiếp tục</button>
+            {% if error %}
+            <strong>{{ error }}</strong>
+            {% endif %}
+        </div>
+        <small style="font-size: 10px;">Đã có tài khoản? <a href="/sign_in">Đăng nhập</a></small>
     </form>
 </body>
 </html>
