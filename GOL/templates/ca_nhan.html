@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+        <div class="title">
+                <span>Game of Life</span>
+                <a href="http://127.0.0.1:5000/logout"><button>Đăng xuất</button></a>
+                {{ name }}
+                <img src="https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png" alt="" width="50px" height="50px">
+            </div>
+            <div id="menu">
+                <ul>
+                    <li><a href="http://127.0.0.1:5000/">Trang chủ</a></li>
+                    <li><a href="/ca-nhan">Cá nhân</a></li>
+                    <li><a href="/hoat-dong">Hoạt động</a></li>
+                    <li><a href="">Thói quen</a></li>
+                    <li><a href="http://127.0.0.1:5000/social">Cộng đồng</a></li>
+                    <li><a href="/contribute">Góp ý</a></li>
+                </ul>
+            </div>
+            <a href="/edit_information">Thông tin cá nhân</a>
+            <a href="/password1">Bảo mật</a> 
+    <div class = "info"> 
+        <h3> {{ info["username"] }} </h3>
+        <h4>Thông tin cá nhân:</h4>
+
+        Tên: {{ info["fullname"] }}      <br>
+        Email: {{ info["email"] }}       <br>
+    </div>
+    <div class = "thuoc_tinh">
+        <h4> Thuộc tính:</h4>
+        <span id="st" value="{{ att.st }}"> Thể chất (STR): {{ att["st"] }} </span>     <br>
+        <span id="knl" value="{{ att.knl }}"> Kiến thức (KNL): {{ att["knl"] }} </span>     <br>
+        <span id="cre" value="{{ att.cre }}"> Sáng tạo (CRE): {{ att["cre"] }} </span>     <br>
+        <span id="per" value="{{ att.per }}"> Nhân cách (PER): {{ att["per"] }} </span>     <br>
+        <span id="soc" value="{{ att.soc }}"> Xã hội (SOC): {{ att["soc"] }} </span>     <br>
+    </div>
+    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+
+<script>
+function showDiv() {document.getElementById('add_q').style.display = "block";}
+</script>
+    <div class = "quote">
+        <h4>Trích dẫn ưa thích:
+                <button onclick= "showDiv()"> + </button>   
+                <div id="add_q" style="display:none;">
+                    <form method = "POST">
+                        <input type="text" name = "quote" placeholder = "Nhập trích dẫn" required> <br>
+                        <input type="text" name = "author" placeholder = "Nhập tác giả">
+                        <button name = "add_quote">Thêm</button>   
+                    </form>  
+                </div>       
+        </h4>
+
+            {% for q in quotes%}
+                " {{ q["quote"] }} "        <br>
+                ({{ q["author"] }})         <br>
+                <br>
+            {% endfor %}
+    </div>
+    <div class = "lich_su">
+        <h4> Lịch sử hoạt động:  
+                <a href="/hoat-dong">Hoạt động</a> </h4>
+        {% for hstr_list in history %}
+            {% for h in hstr_list %}
+            {% if hstr_list[h] != None%}
+                    {% if h != "id" and h!= "user" %}
+                        {% if h == "tit"%}
+                            Hoạt động: {{ hstr_list[h]}} <br>
+                        {% elif h == "des" %}
+                            {% if  hstr_list[h] != "" %}
+                            Nội dung {{ hstr_list[h] }} <br>
+                            {% endif %}
+                        {% elif h == "img" %}
+                            {% if  hstr_list[h] != "" %}
+                            Ảnh đính kèm:<br>
+                            <a href="{{ hstr_list[h] }}"><img src="{{ hstr_list[h] }}" alt="" height="400" width="400"></a>
+                            {% endif %}
+                        {% elif hstr_list[h] != 0 %}
+                             {{ h }}: {{ hstr_list[h] }}
+                        {% endif %}
+                    {% endif %}
+            {% endif %}           
+            {% endfor %}<br>
+        {% endfor %}
+    </div>
+    <script>
+    
+    let st = $('#st').attr('value');
+    let knl = $('#knl').attr('value');    
+    let cre = $('#cre').attr('value');    
+    let per = $('#per').attr('value');    
+    let soc = $('#soc').attr('value');
+    </script>
+    <script src="../static/pieChart.js"></script>
+</body>
+</html>

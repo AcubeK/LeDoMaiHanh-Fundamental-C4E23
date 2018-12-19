@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cộng đồng</title>
+</head>
+<body>
+    <div class="title">
+        <span>Game of Life</span>
+        <a href="http://127.0.0.1:5000/logout"><button>Đăng xuất</button></a>
+        {{ name }}
+        <img src="https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png" alt="" width="50px" height="50px">
+    </div>
+    <div id="menu">
+        <ul>
+            <li><a href="http://127.0.0.1:5000/">Trang chủ</a></li>
+            <li><a href="">Cá nhân</a></li>
+            <li><a href="">Hoạt động</a></li>
+            <li><a href="">Thói quen</a></li>
+            <li><a href="http://127.0.0.1:5000/social">Cộng đồng</a></li>
+            <li><a href="">Góp ý</a></li>
+        </ul>
+    </div>
+
+    <div>
+        <p>Đang theo dõi</p>
+        <ul>
+            {% for friend in friends %}
+            <form method="POST"><li><textarea name="unfollow" cols="15" rows="1">{{ friend }}</textarea></li>
+            <button type="submit">Bỏ theo dõi</button></form>
+            {% endfor %}
+        </ul>
+    </div>
+    <a href="http://127.0.0.1:5000/social">quay lại</a>
+</body>
+</html>
+</body>
+</html>
