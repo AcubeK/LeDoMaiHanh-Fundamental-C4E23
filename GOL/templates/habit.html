@@ -5,33 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="/templates/favicon (1).ico" rel="icon" type="image/x-icon" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAATSgAAIVFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIiIgIREAACIiIiIhEAACIRAAIiEQACIRAAACIRACIhEAAAIhEAIiEQAgAiEQIiIRACIiIRAiIhEAAiIRESIiEQAAAAAAIiIRAAAAAAAiIhEAACIhEQIiERAAAiEQAiIREAACERAAIiERAAIREAACIiIiIhEAAAAiIiIREAD8EAAA8AEAAOHBAADD4QAAg+EAAINhAAADAQAAA4AAAAP/AAAD/wAAA8AAAIHhAACB4QAAwOEAAOADAADwBwAA" rel="icon" type="image/x-icon" />
     <title>👍 Game of Life</title>
 </head>
 <body>
-    <div class="title">
-        <span>Game of Life</span>
-        <a href="http://127.0.0.1:5000/logout"><button>Đăng xuất</button></a>
-        {{ name }}
-        <img src="{{ avt }}" alt="" width="50px" height="50px">
-    </div>
+    
+        <div class="title">
+                <span>Game of Life</span>
+                <a href="http://127.0.0.1:5000/logout"><button>Đăng xuất</button></a>
+                {{ session["token"] }}
+                <img src="https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png" alt="" width="50px" height="50px">
+            </div>
+            <div id="menu">
+                
+                <ul>
+                    <li><a href="http://127.0.0.1:5000/">Trang chủ</a></li>
+                    <li><a href="/ca_nhan">Cá nhân</a></li>
+                    <li><a href="/hoat-dong">Hoạt động</a></li>
+                    <li><a href="/habit">Thói quen</a></li>
+                    <li><a href="http://127.0.0.1:5000/social">Cộng đồng</a></li>
+                    <li><a href="/contribute">Góp ý</a></li>
+                </ul>
+                
+            </div>
+    <div class = "activities">
 
-    <div id="menu">
-        <ul>
-            <li><a href="http://127.0.0.1:5000/">Trang chủ</a></li>
-            <li><a href="/ca_nhan">Cá nhân</a></li>
-            <li><a href="/hoat-dong">Hoạt động</a></li>
-            <li><a href="/habit">Thói quen</a></li>
-            <li><a href="http://127.0.0.1:5000/social">Cộng đồng</a></li>
-            <li><a href="/contribute">Góp ý</a></li>
+        <ul id="list-action" style="list-style: none;">
+        {% for habit in habits %}
+            <li id="li{{loop.index}}">
+                <h3 id="title{{loop.index}}">{{ habit.tit }}</h3>
+                {% for index in habit %}
+                    {% if loop.index >= 4 %}
+                        {% if habit[index] != 0 %}
+                            {{index}}: {{habit[index]}}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </li>
+        {% endfor %}
         </ul>
-    </div>
-
-    <div>
-        Thói quen hiện tại:       
+        
     </div>
     <script>
-        function showDiv() {document.getElementById('add_habit').style.display = "block";}
+        let numAction = $('#list-action')[0].children.length;
+        for (let index = 1; index <= numAction; index++) {
+            $(`#title${index}`).on('click', () => {
+                if ($(`#li${index}`)[0].children.length === 1) {
+                    let title = $(`#title${index}`)[0].innerText;
+                    
+                    let descForm = `
+                    <form id="div-${index}" method = "POST">
+                    <label>Miêu tả</label>
+                    <input style="display:none" name="${title}"></input>
+                    <input type="text" name="description">
+                    
+                    <label>thêm ảnh</label>
+                    <input type="url" name="image">
+
+                    <label>Chia sẻ</label>
+                    <input type="radio" name="share" value="yes">Yes
+                    <input type="radio" name="share" value="no">No
+
+                    <button type="submit">Save</button>         
+                    </form> `;
+                    
+                    $(`#li${index}`).append(descForm);
+                        
+                } else {
+                    $(`#form-${index}`).remove('form');
+                }
+            })            
+        }
     </script>
 </body>
 </html>

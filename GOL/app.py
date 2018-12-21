@@ -452,7 +452,7 @@ def habit():
 
                 
                     
-            return render_template("habit.html", habit_list = habit_list)
+            return render_template("habit.html", habits = habit_list)
         else:
             return redirect("/sign_in") 
         
