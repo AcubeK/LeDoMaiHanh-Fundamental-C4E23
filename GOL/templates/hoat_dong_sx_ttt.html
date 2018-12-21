@@ -37,45 +37,54 @@
                         </form>
                 <h5>((Hãy click vô hoạt dộng mà bạn đã hoàn thành))</h5>
         
-                {% for a_list in act %}
-                        <ul style="list-style: none;">
-                        <li>
-                                <form method = "POST">
-                                {% for a in a_list %}
-                                {% if a_list[sort] != 0 %}
-                                        {% if a == "tit"%}
-                                        <div >
-                                                        <h3 onclick = "showDiv()" >
-                                                                {{ a_list[a] }}
-                                                        </h3>
-                                                        <script>
-                                                                var K = "{{ loop.index0 }}";
-                                                                function showDiv() {document.getElementById(K).style.display = "block";}
-                                                        </script>
-                                                        <div id = "{{ loop.index0 }}" style = "display:none">
-                                                                <label>Miêu tả</label>
-                                                                <input type="text" name="description">
-                                                                
-                                                                <label>thêm ảnh</label>
-                                                                <input type="url" name="image">
-                                
-                                                                <label>Chia sẻ</label>
-                                                                <input type="radio" name="share" value="yes">Yes
-                                                                <input type="radio" name="share" value="no">No
-                                
-                                                                <button type="submit">Save</button>
-                                                                <input name = "{{ a_list[a] }}" style = "display:none">
-                                                        </div>
-                                        </div>
-                                        {% elif a != "id" and a_list[a] != 0 %}
-                                                {{a}}: {{ a_list[a] }};
+                <ul id="list-action" style="list-style: none;">
+                                {% for act in acts %}
+                                    <li id="li{{loop.index}}">
+                                            {% if act[sort] != 0 %} 
+                                                <h3 id="title{{loop.index}}">{{ act.tit }}</h3>
+                                                {% for index in act %}
+                                                {% if loop.index >= 3 %}
+                                                        {% if act[index] != 0 %}
+                                                        {{index}}: {{act[index]}}
+                                                        {% endif %}
+                                                {% endif %}
+                                                {% endfor %}
                                         {% endif %}
-                                {% endif %}
+                                    </li>
                                 {% endfor %}
-                                </form>                   
-                        </li>
-                        </ul>
-                {% endfor %}
-        </div>
+                                </ul>
+                                
+                            </div>
+                            <script>
+                                let numAction = $('#list-action')[0].children.length;
+                                for (let index = 1; index <= numAction; index++) {
+                                    $(`#title${index}`).on('click', () => {
+                                        if ($(`#li${index}`)[0].children.length === 1) {
+                                            let title = $(`#title${index}`)[0].innerText;
+                                            
+                                            let descForm = `
+                                            <form id="div-${index}" method = "POST">
+                                            <label>Miêu tả</label>
+                                            <input style="display:none" name="${title}"></input>
+                                            <input type="text" name="description">
+                                            
+                                            <label>thêm ảnh</label>
+                                            <input type="url" name="image">
+                        
+                                            <label>Chia sẻ</label>
+                                            <input type="radio" name="share" value="yes">Yes
+                                            <input type="radio" name="share" value="no">No
+                        
+                                            <button type="submit">Save</button>         
+                                            </form> `;
+                                            
+                                            $(`#li${index}`).append(descForm);
+                                                
+                                        } else {
+                                            $(`#form-${index}`).remove('form');
+                                        }
+                                    })            
+                                }
+                            </script>
 </body>
 </html>

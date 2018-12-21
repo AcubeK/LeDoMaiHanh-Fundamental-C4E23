@@ -296,7 +296,7 @@ def ca_nhan():
 def hoat_dong():
     if request.method == "GET":
         act_list = Activities.objects()
-        return render_template("hoat_dong.html", act = act_list,name = session["token"])
+        return render_template("hoat_dong.html", acts = act_list,name = session["token"])
     else:
         if "token" in session:
             user = session["token"]
@@ -342,7 +342,7 @@ def hoat_dong():
 def hoat_dong_sx_ttt(sort):
     if request.method == "GET":
         act_list = Activities.objects()
-        return render_template("hoat_dong_sx_ttt.html", act = act_list, sort = sort,name = session["token"])
+        return render_template("hoat_dong_sx_ttt.html", acts = act_list, sort = sort,name = session["token"])
     else:
         if "token" in session:        
             user = session["token"]
@@ -383,7 +383,7 @@ def hoat_dong_sx_ttt(sort):
                         post = Post(tit = act["tit"] ,img = img, user = session["token"], descript = des)
                         post.save()
                     break
-            return render_template("hoat_dong_sx_ttt.html", act = act_list)
+            return render_template("hoat_dong_sx_ttt.html", acts = act_list)
         else:
             return redirect(url_for("sign_in"))
 
