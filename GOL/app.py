@@ -419,7 +419,7 @@ def habit():
                                 st = x_data["st"]
                                 knl = x_data["knl"]
                                 cre = x_data["cre"]
-                                Habit(username = user, streak = len(habit_or_nah) + 1, tit = x, soc = soc, per = per, knl = knl, st = st, cre = cre).save()
+                                Habit(username = user, tit = x, soc = soc, per = per, knl = knl, st = st, cre = cre).save()
                     else:
                         print("aaaasasasas")
                         for habit in habit_list:
@@ -434,7 +434,7 @@ def habit():
                                         st = x_data["st"]
                                         knl = x_data["knl"]
                                         cre = x_data["cre"]
-                                        Habit(username = user, tit = x, streak = len(habit_or_nah) + 1,  soc = soc, per = per, knl = knl, st = st, cre = cre).save()
+                                        Habit(username = user, tit = x,  soc = soc, per = per, knl = knl, st = st, cre = cre).save()
                             else:
                                 m = Habit.objects(username = user, tit = x)
                                 m.delete()
@@ -449,10 +449,7 @@ def habit():
                                         knl = x_data["knl"]
                                         cre = x_data["cre"]
                                         Habit(username = user, tit = x, soc = soc, per = per, knl = knl, st = st, cre = cre).save()
-                                    
-
-                
-                    
+                   
             return render_template("habit.html", habits = habit_list)
         else:
             return redirect("/sign_in") 

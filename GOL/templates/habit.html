@@ -47,5 +47,36 @@
         </ul>
         
     </div>
+    <script>
+        let numAction = $('#list-action')[0].children.length;
+        for (let index = 1; index <= numAction; index++) {
+            $(`#title${index}`).on('click', () => {
+                if ($(`#li${index}`)[0].children.length === 1) {
+                    let title = $(`#title${index}`)[0].innerText;
+                    
+                    let descForm = `
+                    <form id="div-${index}" method = "POST">
+                    <label>Miêu tả</label>
+                    <input style="display:none" name="${title}"></input>
+                    <input type="text" name="description">
+                    
+                    <label>thêm ảnh</label>
+                    <input type="url" name="image">
+
+                    <label>Chia sẻ</label>
+                    <input type="radio" name="share" value="yes">Yes
+                    <input type="radio" name="share" value="no">No
+
+                    <button type="submit">Save</button>         
+                    </form> `;
+                    
+                    $(`#li${index}`).append(descForm);
+                        
+                } else {
+                    $(`#form-${index}`).remove('form');
+                }
+            })            
+        }
+    </script>
 </body>
 </html>
