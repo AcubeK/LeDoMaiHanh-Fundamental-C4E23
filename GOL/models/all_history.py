@@ -5,6 +5,7 @@ class All_history(Document):
     tit = StringField()
     des = StringField()
     img = StringField()
+    time = StringField()
     st = IntField(default = 0)
     knl = IntField(default = 0)
     cre = IntField(default = 0)

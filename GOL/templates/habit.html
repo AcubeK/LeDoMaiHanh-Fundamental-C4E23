@@ -4,24 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../static/sign_in.css">
     <link href="/templates/favicon (1).ico" rel="icon" type="image/x-icon" />
     <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAATSgAAIVFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIiIgIREAACIiIiIhEAACIRAAIiEQACIRAAACIRACIhEAAAIhEAIiEQAgAiEQIiIRACIiIRAiIhEAAiIRESIiEQAAAAAAIiIRAAAAAAAiIhEAACIhEQIiERAAAiEQAiIREAACERAAIiERAAIREAACIiIiIhEAAAAiIiIREAD8EAAA8AEAAOHBAADD4QAAg+EAAINhAAADAQAAA4AAAAP/AAAD/wAAA8AAAIHhAACB4QAAwOEAAOADAADwBwAA" rel="icon" type="image/x-icon" />
     <title>👍 Game of Life</title>
 </head>
-<body>  
-    <div class="loginbox">
-    <form action="" method="post"> 
-            <h3 class="avatar">Sign in</h3>
-        <div><input type="text" placeholder="Tên đăng nhập" name="username"></div>
-        <div><input type="password" placeholder="Mật khẩu" name="password"></div>
-        <button class="button">Đăng nhập</button><br>
-        <a href="/sign_up"><small>Người mới? Đăng kí ngay</small></a>
-        {% if error %}
-        <strong>{{ error }}</strong>
-        {% endif %}
-    </form>
+<body>
+    <div class="title">
+        <span>Game of Life</span>
+        <a href="http://127.0.0.1:5000/logout"><button>Đăng xuất</button></a>
+        {{ name }}
+        <img src="{{ avt }}" alt="" width="50px" height="50px">
     </div>
+
+    <div id="menu">
+        <ul>
+            <li><a href="http://127.0.0.1:5000/">Trang chủ</a></li>
+            <li><a href="/ca_nhan">Cá nhân</a></li>
+            <li><a href="/hoat-dong">Hoạt động</a></li>
+            <li><a href="/habit">Thói quen</a></li>
+            <li><a href="http://127.0.0.1:5000/social">Cộng đồng</a></li>
+            <li><a href="/contribute">Góp ý</a></li>
+        </ul>
+    </div>
+
+    <div>
+        Thói quen hiện tại:       
+    </div>
+    <script>
+        function showDiv() {document.getElementById('add_habit').style.display = "block";}
+    </script>
 </body>
 </html>
