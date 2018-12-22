@@ -383,7 +383,7 @@ def hoat_dong_sx_ttt(sort):
                         post = Post(tit = act["tit"] ,img = img, user = session["token"], descript = des)
                         post.save()
                     break
-            return render_template("hoat_dong_sx_ttt.html", acts = act_list)
+            return redirect("/hoat-dong")
         else:
             return redirect(url_for("sign_in"))
 
@@ -391,68 +391,100 @@ def hoat_dong_sx_ttt(sort):
 def habit():
         if "token" in session:
             user = session["token"]
+            #list tập hợp các thói quen của token
             habit_list = Habit.objects(username = user)
-            act_list = Activities.objects()
-            hstr_list = All_history.objects(user = user)
-            hstr_tit = []
-            hstr_act_tit = []
+            #list tập hợp các lịch sử của token 
+            hstr_list = All_history.objects(user = user)    
+            acts = []
 
+            #xét từng hoạt động trong lịch sử
             for hstr in hstr_list:
-                hstr_tit.append(hstr["tit"])
-                if hstr["tit"] not in hstr_act_tit:
-                    if hstr_tit.count(hstr["tit"]) >= 3:
-                        hstr_act_tit.append(hstr["tit"])
+                if hstr["tit"] not in acts:
+                    acts.append(hstr["tit"])
 
-            if hstr_act_tit != []:
-                for x in hstr_act_tit:
-                    habit_or_nah = All_history.objects(user = user, tit = x)
-
-                    if list(habit_list) == []:
-                        print("sfiashfbsak")
-                        for i in range(len(habit_or_nah)-1):
-                            if int(habit_or_nah[i+1].time[6:8]) != int(habit_or_nah[i].time[6:8]) + 1:
-                                break
-                            if i == len(habit_or_nah) - 2:
-                                x_data = Activities.objects(tit = x).first()
-                                soc = x_data["soc"]
-                                per = x_data["per"]
-                                st = x_data["st"]
-                                knl = x_data["knl"]
-                                cre = x_data["cre"]
-                                Habit(username = user, tit = x, soc = soc, per = per, knl = knl, st = st, cre = cre).save()
-                    else:
-                        print("aaaasasasas")
-                        for habit in habit_list:
-                            if x != habit["tit"]:
-                                for i in range(len(habit_or_nah) - 1):
-                                    if int(habit_or_nah[i+1]["time"][6:8]) != int(habit_or_nah[i]["time"][6:8]) + 1:
-                                        break
-                                    if i == len(habit_or_nah) - 2:
-                                        x_data = Activities.objects(tit = x).first()
-                                        soc = x_data["soc"]
-                                        per = x_data["per"]
-                                        st = x_data["st"]
-                                        knl = x_data["knl"]
-                                        cre = x_data["cre"]
-                                        Habit(username = user, tit = x,  soc = soc, per = per, knl = knl, st = st, cre = cre).save()
-                            else:
-                                m = Habit.objects(username = user, tit = x)
-                                m.delete()
-                                for i in range(len(habit_or_nah) - 1):
-                                    if int(habit_or_nah[i+1]["time"][6:8]) != int(habit_or_nah[i]["time"][6:8]) + 1:
-                                        break
-                                    if i == len(habit_or_nah) - 2:
-                                        x_data = Activities.objects(tit = x).first()
-                                        soc = x_data["soc"]
-                                        per = x_data["per"]
-                                        st = x_data["st"]
-                                        knl = x_data["knl"]
-                                        cre = x_data["cre"]
-                                        Habit(username = user, tit = x, soc = soc, per = per, knl = knl, st = st, cre = cre).save()
-                   
+            #xét từng title (không lặp) trong list
+            for a in acts:
+                #list tập hợp các hoạt động của người dùng có title là a
+                act_in_hstr = All_history.objects(user = user, tit = a)
+                if len(act_in_hstr) >= 3:
+                    for i in range(len(act_in_hstr) - 1):
+                        if int(act_in_hstr[i+1].time[6:8]) != int(act_in_hstr[i].time[6:8]) + 1:
+                            break
+                        if i == len(act_in_hstr) - 2:
+                            x_data = Activities.objects(tit = x).first()
+                            soc = x_data["soc"]
+                            per = x_data["per"]
+                            st = x_data["st"]
+                            knl = x_data["knl"]
+                            cre = x_data["cre"]
+                            Habit(username = user, tit = x, soc = soc, per = per, knl = knl, st = st, cre = cre).save()
             return render_template("habit.html", habits = habit_list)
         else:
-            return redirect("/sign_in") 
+            return redirect("/sign_in")
+
+            
+        #     habit_list = Habit.objects(username = user)
+        #     act_list = Activities.objects()
+        #     hstr_list = All_history.objects(user = user)
+        #     hstr_tit = []
+        #     hstr_act_tit = []
+
+        #     for hstr in hstr_list:
+        #         hstr_tit.append(hstr["tit"])
+        #         if hstr["tit"] not in hstr_act_tit:
+        #             if hstr_tit.count(hstr["tit"]) >= 3:
+        #                 hstr_act_tit.append(hstr["tit"])
+
+        #     if hstr_act_tit != []:
+        #         for x in hstr_act_tit:
+        #             habit_or_nah = All_history.objects(user = user, tit = x)
+
+        #             if list(habit_list) == []:
+        #                 print("sfiashfbsak")
+        #                 for i in range(len(habit_or_nah)-1):
+        #                     if int(habit_or_nah[i+1].time[6:8]) != int(habit_or_nah[i].time[6:8]) + 1:
+        #                         break
+        #                     if i == len(habit_or_nah) - 2:
+        #                         x_data = Activities.objects(tit = x).first()
+        #                         soc = x_data["soc"]
+        #                         per = x_data["per"]
+        #                         st = x_data["st"]
+        #                         knl = x_data["knl"]
+        #                         cre = x_data["cre"]
+        #                         Habit(username = user, tit = x, soc = soc, per = per, knl = knl, st = st, cre = cre).save()
+        #             else:
+        #                 print("aaaasasasas")
+        #                 for habit in habit_list:
+        #                     if x != habit["tit"]:
+        #                         for i in range(len(habit_or_nah) - 1):
+        #                             if int(habit_or_nah[i+1]["time"][6:8]) != int(habit_or_nah[i]["time"][6:8]) + 1:
+        #                                 break
+        #                             if i == len(habit_or_nah) - 2:
+        #                                 x_data = Activities.objects(tit = x).first()
+        #                                 soc = x_data["soc"]
+        #                                 per = x_data["per"]
+        #                                 st = x_data["st"]
+        #                                 knl = x_data["knl"]
+        #                                 cre = x_data["cre"]
+        #                                 Habit(username = user, tit = x,  soc = soc, per = per, knl = knl, st = st, cre = cre).save()
+        #                     else:
+        #                         m = Habit.objects(username = user, tit = x)
+        #                         m.delete()
+        #                         for i in range(len(habit_or_nah) - 1):
+        #                             if int(habit_or_nah[i+1]["time"][6:8]) != int(habit_or_nah[i]["time"][6:8]) + 1:
+        #                                 break
+        #                             if i == len(habit_or_nah) - 2:
+        #                                 x_data = Activities.objects(tit = x).first()
+        #                                 soc = x_data["soc"]
+        #                                 per = x_data["per"]
+        #                                 st = x_data["st"]
+        #                                 knl = x_data["knl"]
+        #                                 cre = x_data["cre"]
+        #                                 Habit(username = user, tit = x, soc = soc, per = per, knl = knl, st = st, cre = cre).save()
+                   
+        #     return render_template("habit.html", habits = habit_list)
+        # else:
+        #     return redirect("/sign_in") 
         
 if __name__ == '__main__':
   app.run(debug=True)

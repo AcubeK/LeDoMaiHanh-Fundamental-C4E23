@@ -47,7 +47,23 @@
                 {% for index in act %}
                     {% if loop.index >= 3 %}
                         {% if act[index] != 0 %}
-                            {{index}}: {{act[index]}}
+                            {% if index == "st" %}
+                                <span style = "color: red">ST: {{act[index]}}</span>
+                            
+                            {% elif index == "knl"%}
+                                <span style = "color: red">KNL: {{act[index]}}</span>
+
+                            {% elif index == "cre" %}
+                                <span style = "color: red">CRE : {{act[index]}}</span>  
+
+                            {% elif index == "per" %}
+                                <span style = "color: red">PER: {{act[index]}}</span>
+
+                            {% elif index == "soc" %}
+                                <span style = "color: red">SOC: {{act[index]}}</span>
+                            {% endif %}
+                        {% else %}
+                            <span ></span>
                         {% endif %}
                     {% endif %}
                 {% endfor %}
@@ -60,7 +76,7 @@
         let numAction = $('#list-action')[0].children.length;
         for (let index = 1; index <= numAction; index++) {
             $(`#title${index}`).on('click', () => {
-                if ($(`#li${index}`)[0].children.length === 1) {
+                if ($(`#li${index}`)[0].children.length === 6) {
                     let title = $(`#title${index}`)[0].innerText;
                     
                     let descForm = `
@@ -82,7 +98,7 @@
                     $(`#li${index}`).append(descForm);
                         
                 } else {
-                    $(`#form-${index}`).remove('form');
+                    $(`#div-${index}`).remove('form');
                 }
             })            
         }
