@@ -29,14 +29,15 @@
                 </ul>
                 
             </div>
+            </form>
     <div class = "activities">
-
         <ul id="list-action" style="list-style: none;">
         {% for habit in habits %}
             <li id="li{{loop.index}}">
                 <h3 id="title{{loop.index}}">{{ habit.tit }}</h3>
+                Thời gian duy trì thói quen lâu nhất: {{ habit.streak }} ngày liên tiếp <br>
                 {% for index in habit %}
-                    {% if loop.index >= 4 %}
+                    {% if loop.index >= 5 %}
                         {% if habit[index] != 0 %}
                             {{index}}: {{habit[index]}}
                         {% endif %}
@@ -51,7 +52,7 @@
         let numAction = $('#list-action')[0].children.length;
         for (let index = 1; index <= numAction; index++) {
             $(`#title${index}`).on('click', () => {
-                if ($(`#li${index}`)[0].children.length === 1) {
+                if ($(`#li${index}`)[0].children.length === 2) {
                     let title = $(`#title${index}`)[0].innerText;
                     
                     let descForm = `
@@ -73,7 +74,7 @@
                     $(`#li${index}`).append(descForm);
                         
                 } else {
-                    $(`#form-${index}`).remove('form');
+                    $(`#div-${index}`).remove('form');
                 }
             })            
         }
